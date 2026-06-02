@@ -47,13 +47,13 @@ function getCoords(): Promise<{ lat: number; lon: number }> {
 
 // Visual config per theme
 export const WEATHER_THEMES: Record<WeatherTheme, {
-  bg: string          // background color class
-  blob1: string       // first blob color
-  blob2: string       // second blob color
-  accent: string      // button / text accent color
+  bg: string
+  blob1: string
+  blob2: string
+  accent: string
   titleColor: string
   subColor: string
-  particles: string[] // emoji particles shown floating
+  icon: string        // single badge icon
 }> = {
   sunny: {
     bg: 'bg-amber-950',
@@ -62,7 +62,7 @@ export const WEATHER_THEMES: Record<WeatherTheme, {
     accent: 'bg-amber-400 hover:bg-amber-300 text-stone-900 shadow-amber-400/30',
     titleColor: 'text-white',
     subColor: 'text-amber-200/70',
-    particles: ['☀️', '🌤️', '✨'],
+    icon: '☀️',
   },
   cloudy: {
     bg: 'bg-slate-800',
@@ -71,7 +71,7 @@ export const WEATHER_THEMES: Record<WeatherTheme, {
     accent: 'bg-slate-300 hover:bg-white text-slate-800 shadow-slate-400/30',
     titleColor: 'text-white',
     subColor: 'text-slate-300/70',
-    particles: ['☁️', '🌥️', '💨'],
+    icon: '☁️',
   },
   rainy: {
     bg: 'bg-blue-950',
@@ -80,7 +80,7 @@ export const WEATHER_THEMES: Record<WeatherTheme, {
     accent: 'bg-blue-400 hover:bg-blue-300 text-white shadow-blue-400/30',
     titleColor: 'text-white',
     subColor: 'text-blue-200/70',
-    particles: ['🌧️', '💧', '🌂'],
+    icon: '🌧️',
   },
   snowy: {
     bg: 'bg-sky-950',
@@ -89,7 +89,7 @@ export const WEATHER_THEMES: Record<WeatherTheme, {
     accent: 'bg-sky-200 hover:bg-white text-sky-900 shadow-sky-200/30',
     titleColor: 'text-white',
     subColor: 'text-sky-200/70',
-    particles: ['❄️', '🌨️', '⛄'],
+    icon: '❄️',
   },
   stormy: {
     bg: 'bg-zinc-950',
@@ -98,7 +98,7 @@ export const WEATHER_THEMES: Record<WeatherTheme, {
     accent: 'bg-purple-400 hover:bg-purple-300 text-white shadow-purple-400/30',
     titleColor: 'text-white',
     subColor: 'text-zinc-300/70',
-    particles: ['⛈️', '🌩️', '💥'],
+    icon: '⛈️',
   },
   foggy: {
     bg: 'bg-neutral-800',
@@ -107,6 +107,6 @@ export const WEATHER_THEMES: Record<WeatherTheme, {
     accent: 'bg-neutral-300 hover:bg-white text-neutral-800 shadow-neutral-300/30',
     titleColor: 'text-white',
     subColor: 'text-neutral-300/70',
-    particles: ['🌫️', '😶‍🌫️', '🍃'],
+    icon: '🌫️',
   },
 }

@@ -4,28 +4,7 @@ import { useActionState, useEffect, useRef, useState } from 'react'
 import { login } from '@/app/actions/auth'
 import gsap from 'gsap'
 import { fetchWeather, WEATHER_THEMES, type WeatherInfo } from '@/lib/weather'
-
-// Floating particle that drifts upward
-function Particle({ emoji, style }: { emoji: string; style: React.CSSProperties }) {
-  const ref = useRef<HTMLSpanElement>(null)
-  useEffect(() => {
-    if (!ref.current) return
-    gsap.to(ref.current, {
-      y: -120,
-      opacity: 0,
-      duration: gsap.utils.random(3, 6),
-      delay: gsap.utils.random(0, 3),
-      repeat: -1,
-      ease: 'power1.in',
-      repeatDelay: gsap.utils.random(1, 4),
-    })
-  }, [])
-  return (
-    <span ref={ref} className="absolute text-2xl select-none pointer-events-none opacity-60" style={style}>
-      {emoji}
-    </span>
-  )
-}
+import WeatherEffect from '@/components/WeatherEffect'
 
 export default function LoginPage() {
   const [state, formAction, pending] = useActionState(login, null)
@@ -120,18 +99,12 @@ export default function LoginPage() {
     }
   }, [state?.error])
 
-  // Particle positions (fixed so they don't recompute on re-render)
-  const particlePositions = useRef(
-    Array.from({ length: 9 }, (_, i) => ({
-      left: `${10 + (i % 3) * 33 + Math.random() * 10}%`,
-      bottom: `${5 + Math.floor(i / 3) * 15}%`,
-    }))
-  )
-
   if (loading) {
-    return <div className="min-h-screen bg-stone-900 flex items-center justify-center">
-      <div className="w-6 h-6 rounded-full border-2 border-amber-400 border-t-transparent animate-spin" />
-    </div>
+    return (
+      <div className="min-h-screen bg-stone-900 flex items-center justify-center">
+        <div className="w-6 h-6 rounded-full border-2 border-amber-400 border-t-transparent animate-spin" />
+      </div>
+    )
   }
 
   return (
@@ -140,18 +113,12 @@ export default function LoginPage() {
       {/* Splash */}
       {!showForm && (
         <div ref={splashRef} className="absolute inset-0 flex flex-col items-center justify-center">
+          {/* Real weather scene effect */}
+          <WeatherEffect theme={weather?.theme ?? 'sunny'} />
+
           {/* Blobs */}
           <div ref={bgCircle1} className={`absolute w-96 h-96 rounded-full ${theme.blob1} blur-3xl -top-16 -left-16 pointer-events-none`} />
           <div ref={bgCircle2} className={`absolute w-80 h-80 rounded-full ${theme.blob2} blur-3xl bottom-10 right-10 pointer-events-none`} />
-
-          {/* Floating particles */}
-          {theme.particles.map((emoji, i) => (
-            <Particle
-              key={i}
-              emoji={emoji}
-              style={particlePositions.current[i % 9]}
-            />
-          ))}
 
           {/* Title */}
           <div ref={splashTitleRef} className="relative z-10 text-center mb-6 space-y-3">
@@ -162,7 +129,7 @@ export default function LoginPage() {
 
           {/* Weather badge */}
           <div ref={weatherBadgeRef} className="relative z-10 mb-10 flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/10">
-            <span className="text-lg">{theme.particles[0]}</span>
+            <span className="text-lg">{theme.icon}</span>
             <span className={`${theme.titleColor} text-sm font-medium`}>
               {weather?.label} · {weather?.temp}°C
             </span>
