@@ -5,7 +5,7 @@ import { login } from '@/app/actions/auth'
 import gsap from 'gsap'
 import { fetchWeather, WEATHER_THEMES, type WeatherInfo } from '@/lib/weather'
 import WeatherEffect from '@/components/WeatherEffect'
-import LoginCharacter from '@/components/LoginCharacter'
+import LoginSlime from '@/components/LoginSlime'
 
 export default function LoginPage() {
   const [state, formAction, pending] = useActionState(login, null)
@@ -166,7 +166,7 @@ export default function LoginPage() {
                 {/* Subtle inner glow */}
                 <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 80%, rgba(255,255,255,0.07), transparent 70%)' }} />
                 <div className="w-40 h-44 relative z-10">
-                  <LoginCharacter passwordFocused={passwordFocused} />
+                  <LoginSlime passwordFocused={passwordFocused} />
                 </div>
               </div>
 
