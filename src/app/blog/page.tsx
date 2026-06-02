@@ -48,7 +48,7 @@ const posts = [
 
 比去年少了几本，但感觉更认真了。
 
-**印象最深的几本：**
+印象最深的几本：
 
 《云边有个小卖部》——我知道很多人觉得煽情，但我在地铁上读完最后一章，哭得很没形象。有些眼泪不是被"感动"了，是被"想起了什么"触动了。
 
@@ -56,11 +56,11 @@ const posts = [
 
 《挪威的森林》——是第三次读了。每次读都会在不同的地方停下来。这次停在了渡边说"死不是生的对立，而是潜伏在生之中"那里，站在路边想了很久。
 
-**读不下去的：**
+读不下去的：
 
 有三本我翻了前两章就放下了，名字就不写了，可能是时机不对，也可能真的不适合我。
 
-**2026 年的打算：**
+2026 年的打算：
 
 少立 flag，多翻书。`,
   },
@@ -116,56 +116,67 @@ const tags = ["全部", "生活", "随笔", "阅读"];
 
 export default function BlogPage() {
   return (
-    <div className="max-w-4xl mx-auto px-6 py-16">
-      {/* Header */}
-      <div className="mb-12">
-        <h1 className="text-4xl font-bold text-stone-800 mb-4">博客</h1>
-        <p className="text-stone-500 text-lg">把零散的想法，写成可以翻看的样子。</p>
-      </div>
+    <>
+      {/* Hero */}
+      <section className="bg-[#f5f5f7] pt-20 pb-16 px-6">
+        <div className="max-w-[980px] mx-auto">
+          <p className="text-[#6e6e73] text-[14px] font-medium tracking-widest uppercase mb-4">博客</p>
+          <h1 className="text-[64px] md:text-[72px] font-bold text-[#1d1d1f] leading-[1.05] tracking-tight mb-6">
+            把零散的想法，<br />写成可以翻看的样子。
+          </h1>
+          <p className="text-[21px] text-[#6e6e73] max-w-[540px]">
+            共 {posts.length} 篇文章
+          </p>
+        </div>
+      </section>
 
-      {/* Tags */}
-      <div className="flex flex-wrap gap-2 mb-10">
-        {tags.map((tag) => (
-          <span
-            key={tag}
-            className={`px-4 py-1.5 rounded-full text-sm font-medium cursor-pointer transition-colors ${
-              tag === "全部"
-                ? "bg-amber-500 text-white"
-                : "bg-white border border-stone-200 text-stone-600 hover:border-amber-300 hover:text-amber-600"
-            }`}
-          >
-            {tag}
-          </span>
-        ))}
-      </div>
+      {/* Tag filters */}
+      <section className="bg-white border-b border-black/10 px-6 py-5 sticky top-12 z-40">
+        <div className="max-w-[980px] mx-auto flex flex-wrap gap-2">
+          {tags.map((tag) => (
+            <span
+              key={tag}
+              className={`px-4 py-1.5 rounded-full text-[14px] font-medium cursor-pointer transition-colors ${
+                tag === "全部"
+                  ? "bg-[#1d1d1f] text-white"
+                  : "bg-[#f5f5f7] text-[#1d1d1f] hover:bg-[#e8e8ed]"
+              }`}
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      </section>
 
       {/* Posts */}
-      <div className="space-y-6">
-        {posts.map((post) => (
-          <article
-            key={post.slug}
-            id={post.slug}
-            className="bg-white rounded-2xl p-8 border border-stone-100 hover:border-amber-200 hover:shadow-md transition-all"
-          >
-            <div className="flex items-center gap-3 mb-3">
-              <span className="text-xs px-2.5 py-1 bg-amber-100 text-amber-700 rounded-full font-medium">
-                {post.tag}
-              </span>
-              <span className="text-xs text-stone-400">{post.date}</span>
-              <span className="text-xs text-stone-400">· {post.readTime}阅读</span>
-            </div>
-            <h2 className="text-xl font-bold text-stone-800 mb-3 hover:text-amber-700 transition-colors cursor-pointer">
-              {post.title}
-            </h2>
-            <p className="text-stone-500 leading-relaxed mb-5 text-sm">{post.excerpt}</p>
+      <section className="bg-white py-16 px-6">
+        <div className="max-w-[980px] mx-auto space-y-5">
+          {posts.map((post) => (
+            <article
+              key={post.slug}
+              id={post.slug}
+              className="bg-[#f5f5f7] rounded-[20px] p-8 hover:shadow-lg transition-all duration-300"
+            >
+              <div className="flex flex-wrap items-center gap-3 mb-4">
+                <span className="text-[12px] font-medium text-[#0071e3] bg-[#0071e3]/10 px-3 py-1 rounded-full">
+                  {post.tag}
+                </span>
+                <span className="text-[13px] text-[#6e6e73]">{post.date}</span>
+                <span className="text-[13px] text-[#6e6e73]">· {post.readTime}阅读</span>
+              </div>
+              <h2 className="text-[24px] font-bold text-[#1d1d1f] mb-3 leading-snug tracking-tight hover:text-[#0071e3] transition-colors cursor-pointer">
+                {post.title}
+              </h2>
+              <p className="text-[17px] text-[#6e6e73] leading-relaxed mb-6">{post.excerpt}</p>
 
-            {/* Article content */}
-            <div className="border-t border-stone-100 pt-5 text-stone-600 text-sm leading-7 whitespace-pre-line">
-              {post.content}
-            </div>
-          </article>
-        ))}
-      </div>
-    </div>
+              {/* Article content */}
+              <div className="border-t border-black/10 pt-6 text-[15px] text-[#6e6e73] leading-[1.8] whitespace-pre-line">
+                {post.content}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    </>
   );
 }

@@ -84,62 +84,70 @@ const photos = [
 
 export default function GalleryPage() {
   return (
-    <div className="max-w-5xl mx-auto px-6 py-16">
-      {/* Header */}
-      <div className="mb-12">
-        <h1 className="text-4xl font-bold text-stone-800 mb-4">相册</h1>
-        <p className="text-stone-500 text-lg">
-          用镜头留住那些来不及用文字描述的瞬间。
-        </p>
-      </div>
+    <>
+      {/* Hero */}
+      <section className="bg-[#1d1d1f] pt-20 pb-16 px-6">
+        <div className="max-w-[980px] mx-auto">
+          <p className="text-[#0071e3] text-[14px] font-medium tracking-widest uppercase mb-4">相册</p>
+          <h1 className="text-[64px] md:text-[72px] font-bold text-white leading-[1.05] tracking-tight mb-6">
+            镜头里的瞬间
+          </h1>
+          <p className="text-[21px] text-white/60 max-w-[540px]">
+            用镜头留住那些来不及用文字描述的瞬间。
+          </p>
+        </div>
+      </section>
 
       {/* Stats */}
-      <div className="flex gap-8 mb-12 text-center">
-        {[
-          { label: "张照片", value: "138" },
-          { label: "个地方", value: "27" },
-          { label: "年记录", value: "3" },
-        ].map((stat) => (
-          <div key={stat.label}>
-            <div className="text-2xl font-bold text-stone-800">{stat.value}</div>
-            <div className="text-sm text-stone-400 mt-1">{stat.label}</div>
-          </div>
-        ))}
-      </div>
+      <section className="bg-[#1d1d1f] border-t border-white/10 px-6 py-8">
+        <div className="max-w-[980px] mx-auto flex gap-12">
+          {[
+            { label: "张照片", value: "138" },
+            { label: "个地方", value: "27" },
+            { label: "年记录", value: "3" },
+          ].map((stat) => (
+            <div key={stat.label}>
+              <div className="text-[32px] font-bold text-white tracking-tight">{stat.value}</div>
+              <div className="text-[14px] text-white/50 mt-1">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* Photo Grid */}
-      <div className="columns-2 md:columns-3 gap-4 space-y-4">
-        {photos.map((photo) => (
-          <div
-            key={photo.id}
-            className="break-inside-avoid group relative overflow-hidden rounded-2xl cursor-pointer"
-          >
-            {/* Placeholder image */}
-            <div
-              className={`w-full ${photo.aspect} bg-gradient-to-br ${photo.color} flex items-center justify-center`}
-            >
-              <span className="text-5xl opacity-80 group-hover:scale-110 transition-transform duration-300">
-                {photo.emoji}
-              </span>
-            </div>
+      <section className="bg-[#f5f5f7] py-16 px-6">
+        <div className="max-w-[980px] mx-auto">
+          <div className="columns-2 md:columns-3 gap-4 space-y-4">
+            {photos.map((photo) => (
+              <div
+                key={photo.id}
+                className="break-inside-avoid group relative overflow-hidden rounded-[20px] cursor-pointer shadow-sm hover:shadow-xl transition-shadow duration-300"
+              >
+                <div
+                  className={`w-full ${photo.aspect} bg-gradient-to-br ${photo.color} flex items-center justify-center`}
+                >
+                  <span className="text-5xl opacity-80 group-hover:scale-110 transition-transform duration-300">
+                    {photo.emoji}
+                  </span>
+                </div>
 
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/40 transition-all duration-300 rounded-2xl flex items-end">
-              <div className="p-4 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                <p className="text-white font-medium text-sm">{photo.title}</p>
-                <p className="text-white/70 text-xs mt-0.5">
-                  {photo.location} · {photo.date}
-                </p>
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 rounded-[20px] flex items-end">
+                  <div className="p-5 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                    <p className="text-white font-semibold text-[15px]">{photo.title}</p>
+                    <p className="text-white/70 text-[13px] mt-0.5">
+                      {photo.location} · {photo.date}
+                    </p>
+                  </div>
+                </div>
               </div>
-            </div>
+            ))}
           </div>
-        ))}
-      </div>
 
-      {/* Bottom note */}
-      <p className="text-center text-stone-400 text-sm mt-16">
-        还有更多照片在路上 · 慢慢更新
-      </p>
-    </div>
+          <p className="text-center text-[#6e6e73] text-[15px] mt-16">
+            还有更多照片在路上 · 慢慢更新
+          </p>
+        </div>
+      </section>
+    </>
   );
 }
