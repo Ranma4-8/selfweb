@@ -5,7 +5,7 @@ import { login, register } from '@/app/actions/auth'
 import gsap from 'gsap'
 import { fetchWeather, WEATHER_THEMES, type WeatherInfo } from '@/lib/weather'
 import WeatherEffect from '@/components/WeatherEffect'
-import LoginGeoPals from '@/components/LoginGeoPals'
+import LoginBlobs from '@/components/LoginBlobs'
 
 type Mode = 'login' | 'register'
 
@@ -177,8 +177,8 @@ export default function LoginPage() {
                 style={{ background: 'linear-gradient(135deg,rgba(255,255,255,0.07),rgba(255,255,255,0.02))' }}
               >
                 <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 80%,rgba(255,255,255,0.06),transparent 70%)' }} />
-                <div className="w-48 h-56 relative z-10">
-                  <LoginGeoPals passwordFocused={passwordFocused} />
+                <div className="w-48 h-52 relative z-10">
+                  <LoginBlobs passwordFocused={passwordFocused} />
                 </div>
               </div>
 
