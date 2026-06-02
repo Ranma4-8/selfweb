@@ -5,12 +5,14 @@ import { login } from '@/app/actions/auth'
 import gsap from 'gsap'
 import { fetchWeather, WEATHER_THEMES, type WeatherInfo } from '@/lib/weather'
 import WeatherEffect from '@/components/WeatherEffect'
+import LoginCharacter from '@/components/LoginCharacter'
 
 export default function LoginPage() {
   const [state, formAction, pending] = useActionState(login, null)
   const [showForm, setShowForm] = useState(false)
   const [weather, setWeather] = useState<WeatherInfo | null>(null)
   const [loading, setLoading] = useState(true)
+  const [passwordFocused, setPasswordFocused] = useState(false)
 
   const splashRef = useRef<HTMLDivElement>(null)
   const bgCircle1 = useRef<HTMLDivElement>(null)
@@ -21,6 +23,7 @@ export default function LoginPage() {
 
   const formWrapRef = useRef<HTMLDivElement>(null)
   const cardRef = useRef<HTMLDivElement>(null)
+  const characterRef = useRef<HTMLDivElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
   const subtitleRef = useRef<HTMLParagraphElement>(null)
   const fieldsRef = useRef<HTMLDivElement>(null)
@@ -37,7 +40,7 @@ export default function LoginPage() {
 
   const theme = WEATHER_THEMES[weather?.theme ?? 'sunny']
 
-  // Splash entrance (runs after weather loads)
+  // Splash entrance
   useEffect(() => {
     if (loading) return
     const ctx = gsap.context(() => {
@@ -54,7 +57,6 @@ export default function LoginPage() {
         .to(weatherBadgeRef.current, { opacity: 1, scale: 1, duration: 0.4, ease: 'back.out(2)' }, '-=0.2')
         .to(splashBtnRef.current, { opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(2)' }, '-=0.15')
 
-      // Idle float
       gsap.to(bgCircle1.current, { y: -24, duration: 3.2, yoyo: true, repeat: -1, ease: 'sine.inOut' })
       gsap.to(bgCircle2.current, { y: 18, duration: 4.1, yoyo: true, repeat: -1, ease: 'sine.inOut', delay: 0.6 })
     })
@@ -76,18 +78,20 @@ export default function LoginPage() {
   useEffect(() => {
     if (!showForm) return
     gsap.set(formWrapRef.current, { opacity: 0 })
-    gsap.set(cardRef.current, { opacity: 0, y: 50, rotateX: 10 })
-    gsap.set([titleRef.current, subtitleRef.current], { opacity: 0, y: 18 })
-    gsap.set(fieldsRef.current!.children, { opacity: 0, x: -18 })
-    gsap.set(btnRef.current, { opacity: 0, y: 10 })
+    gsap.set(cardRef.current, { opacity: 0, y: 50, scale: 0.95 })
+    gsap.set(characterRef.current, { opacity: 0, x: -30 })
+    gsap.set([titleRef.current, subtitleRef.current], { opacity: 0, y: 16 })
+    gsap.set(fieldsRef.current!.children, { opacity: 0, x: -16 })
+    gsap.set(btnRef.current, { opacity: 0, y: 8 })
 
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
     tl.to(formWrapRef.current, { opacity: 1, duration: 0.1 })
-      .to(cardRef.current, { opacity: 1, y: 0, rotateX: 0, duration: 0.65, ease: 'back.out(1.3)' })
-      .to(titleRef.current, { opacity: 1, y: 0, duration: 0.4 }, '-=0.35')
-      .to(subtitleRef.current, { opacity: 1, y: 0, duration: 0.35 }, '-=0.25')
-      .to(fieldsRef.current!.children, { opacity: 1, x: 0, duration: 0.35, stagger: 0.1 }, '-=0.2')
-      .to(btnRef.current, { opacity: 1, y: 0, duration: 0.3 }, '-=0.1')
+      .to(cardRef.current, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: 'back.out(1.3)' })
+      .to(characterRef.current, { opacity: 1, x: 0, duration: 0.5 }, '-=0.3')
+      .to(titleRef.current, { opacity: 1, y: 0, duration: 0.35 }, '-=0.2')
+      .to(subtitleRef.current, { opacity: 1, y: 0, duration: 0.3 }, '-=0.2')
+      .to(fieldsRef.current!.children, { opacity: 1, x: 0, duration: 0.3, stagger: 0.09 }, '-=0.15')
+      .to(btnRef.current, { opacity: 1, y: 0, duration: 0.25 }, '-=0.1')
   }, [showForm])
 
   // Error shake
@@ -108,26 +112,22 @@ export default function LoginPage() {
   }
 
   return (
-    <div className={`relative min-h-screen overflow-hidden ${theme.bg} transition-colors duration-700`}>
+    <div className={`relative min-h-screen overflow-hidden ${theme.bg}`}>
+      {/* Weather effect — always visible */}
+      <WeatherEffect theme={weather?.theme ?? 'sunny'} />
 
       {/* Splash */}
       {!showForm && (
         <div ref={splashRef} className="absolute inset-0 flex flex-col items-center justify-center">
-          {/* Real weather scene effect */}
-          <WeatherEffect theme={weather?.theme ?? 'sunny'} />
-
-          {/* Blobs */}
           <div ref={bgCircle1} className={`absolute w-96 h-96 rounded-full ${theme.blob1} blur-3xl -top-16 -left-16 pointer-events-none`} />
           <div ref={bgCircle2} className={`absolute w-80 h-80 rounded-full ${theme.blob2} blur-3xl bottom-10 right-10 pointer-events-none`} />
 
-          {/* Title */}
           <div ref={splashTitleRef} className="relative z-10 text-center mb-6 space-y-3">
             <p className={`${theme.subColor} text-sm tracking-[0.3em] uppercase`}>欢迎回来</p>
             <h1 className={`text-5xl font-bold ${theme.titleColor} tracking-tight`}>晴间有云</h1>
             <p className={`${theme.subColor} text-base`}>记录生活的碎片</p>
           </div>
 
-          {/* Weather badge */}
           <div ref={weatherBadgeRef} className="relative z-10 mb-10 flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/10">
             <span className="text-lg">{theme.icon}</span>
             <span className={`${theme.titleColor} text-sm font-medium`}>
@@ -135,7 +135,6 @@ export default function LoginPage() {
             </span>
           </div>
 
-          {/* CTA */}
           <button
             ref={splashBtnRef}
             onClick={handleShowForm}
@@ -151,45 +150,80 @@ export default function LoginPage() {
         </div>
       )}
 
-      {/* Login form */}
+      {/* Login form — frosted glass, character on left */}
       {showForm && (
-        <div ref={formWrapRef} className="absolute inset-0 flex items-center justify-center bg-stone-50">
-          <div className="w-full max-w-sm px-4" style={{ perspective: '800px' }}>
-            <div ref={cardRef} className="bg-white rounded-2xl shadow-xl border border-stone-100 p-8">
-              <h1 ref={titleRef} className="text-2xl font-semibold text-stone-800 mb-2">登录</h1>
-              <p ref={subtitleRef} className="text-stone-400 text-sm mb-8">输入账号继续</p>
+        <div ref={formWrapRef} className="absolute inset-0 flex items-center justify-center px-4">
+          <div ref={cardRef} className="w-full max-w-2xl">
+            {/* Frosted glass card */}
+            <div className="bg-white/12 backdrop-blur-2xl border border-white/20 rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row">
 
-              <form action={formAction} className="space-y-4">
-                <div ref={fieldsRef} className="space-y-4">
-                  <div>
-                    <label htmlFor="username" className="block text-sm font-medium text-stone-600 mb-1">用户名</label>
-                    <input
-                      id="username" name="username" type="text" autoComplete="username" required
-                      className="w-full px-4 py-2.5 rounded-xl border border-stone-200 bg-stone-50 text-stone-800 placeholder:text-stone-300 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition"
-                      placeholder="输入用户名"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="password" className="block text-sm font-medium text-stone-600 mb-1">密码</label>
-                    <input
-                      id="password" name="password" type="password" autoComplete="current-password" required
-                      className="w-full px-4 py-2.5 rounded-xl border border-stone-200 bg-stone-50 text-stone-800 placeholder:text-stone-300 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition"
-                      placeholder="输入密码"
-                    />
-                  </div>
+              {/* Character panel */}
+              <div
+                ref={characterRef}
+                className="flex items-end justify-center pt-8 pb-0 md:pt-0 md:pb-0 md:w-56 shrink-0 relative overflow-hidden"
+                style={{ background: 'linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03))' }}
+              >
+                {/* Subtle inner glow */}
+                <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 80%, rgba(255,255,255,0.07), transparent 70%)' }} />
+                <div className="w-40 h-44 relative z-10">
+                  <LoginCharacter passwordFocused={passwordFocused} />
                 </div>
+              </div>
 
-                {state?.error && (
-                  <p ref={errorRef} className="text-red-500 text-sm bg-red-50 rounded-lg px-3 py-2">{state.error}</p>
-                )}
+              {/* Divider */}
+              <div className="hidden md:block w-px bg-white/10 my-8" />
 
-                <button
-                  ref={btnRef} type="submit" disabled={pending}
-                  className="w-full py-2.5 rounded-xl bg-amber-400 hover:bg-amber-500 disabled:opacity-60 text-white font-semibold tracking-wide transition mt-2 shadow-md shadow-amber-200"
-                >
-                  {pending ? '登录中...' : '登录'}
-                </button>
-              </form>
+              {/* Form panel */}
+              <div className="flex-1 px-8 py-9">
+                <h1 ref={titleRef} className="text-2xl font-semibold text-white mb-1">登录</h1>
+                <p ref={subtitleRef} className="text-white/50 text-sm mb-8">输入账号继续</p>
+
+                <form action={formAction} className="space-y-4">
+                  <div ref={fieldsRef} className="space-y-4">
+                    <div>
+                      <label htmlFor="username" className="block text-sm font-medium text-white/70 mb-1">
+                        用户名
+                      </label>
+                      <input
+                        id="username" name="username" type="text" autoComplete="username" required
+                        className="w-full px-4 py-2.5 rounded-xl bg-white/10 border border-white/20 text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-white/40 focus:border-transparent transition backdrop-blur-sm"
+                        placeholder="输入用户名"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="password" className="block text-sm font-medium text-white/70 mb-1">
+                        密码
+                      </label>
+                      <input
+                        id="password" name="password" type="password" autoComplete="current-password" required
+                        onFocus={() => setPasswordFocused(true)}
+                        onBlur={() => setPasswordFocused(false)}
+                        className="w-full px-4 py-2.5 rounded-xl bg-white/10 border border-white/20 text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-white/40 focus:border-transparent transition backdrop-blur-sm"
+                        placeholder="输入密码"
+                      />
+                    </div>
+                  </div>
+
+                  {state?.error && (
+                    <p ref={errorRef} className="text-red-300 text-sm bg-red-500/20 rounded-lg px-3 py-2 border border-red-400/20">
+                      {state.error}
+                    </p>
+                  )}
+
+                  <button
+                    ref={btnRef} type="submit" disabled={pending}
+                    className={`w-full py-2.5 rounded-xl ${theme.accent} font-semibold tracking-wide transition shadow-lg mt-2 disabled:opacity-50`}
+                  >
+                    {pending ? '登录中...' : '登录'}
+                  </button>
+                </form>
+              </div>
+            </div>
+
+            {/* Weather info below card */}
+            <div className="flex items-center justify-center gap-2 mt-4">
+              <span className="text-base">{theme.icon}</span>
+              <span className="text-white/40 text-xs">{weather?.label} · {weather?.temp}°C</span>
             </div>
           </div>
         </div>
