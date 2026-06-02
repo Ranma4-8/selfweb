@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import AuthButton from "@/components/AuthButton";
 
 const geist = Geist({
   variable: "--font-geist-sans",
@@ -21,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="zh-CN" className={`${geist.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-stone-50 text-stone-800 font-sans">
-        <Navbar />
+        <Navbar authButton={<AuthButton />} />
         <main className="flex-1 pt-16">{children}</main>
         <footer className="bg-amber-50 border-t border-amber-100 py-8 text-center text-sm text-stone-500">
           <p>© 2024 晴间有云 · 用文字留住流逝的时光</p>

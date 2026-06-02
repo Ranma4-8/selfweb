@@ -11,7 +11,7 @@ const navLinks = [
   { href: "/about", label: "关于" },
 ];
 
-export default function Navbar() {
+export default function Navbar({ authButton }: { authButton?: React.ReactNode }) {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -37,6 +37,7 @@ export default function Navbar() {
               {link.label}
             </Link>
           ))}
+          {authButton}
         </nav>
 
         {/* Mobile menu button */}
@@ -70,6 +71,7 @@ export default function Navbar() {
               {link.label}
             </Link>
           ))}
+          {authButton}
         </div>
       )}
     </header>
