@@ -4,8 +4,11 @@ const posts = [
     title: "春日漫步：被樱花淹没的下午",
     date: "2026-03-28",
     tag: "生活",
+    tagColor: "text-rose-600 bg-rose-50",
+    accentColor: "bg-rose-400",
     readTime: "4 分钟",
-    excerpt: "那天下午阳光很好，我一个人走过公园，粉色的花瓣铺了一地，像是世界暂停了片刻。路边的老人在下棋，小孩子在追鸽子。我突然意识到，幸福大概就是这样，不需要理由，只是刚好在那里。",
+    excerpt:
+      "那天下午阳光很好，我一个人走过公园，粉色的花瓣铺了一地，像是世界暂停了片刻。路边的老人在下棋，小孩子在追鸽子。我突然意识到，幸福大概就是这样，不需要理由，只是刚好在那里。",
     content: `那天下午，我没有任何计划。
 
 打开手机，看了眼天气，"晴，微风"。于是就出门了。
@@ -23,8 +26,11 @@ const posts = [
     title: "关于咖啡，和清晨的仪式感",
     date: "2026-02-14",
     tag: "随笔",
+    tagColor: "text-amber-600 bg-amber-50",
+    accentColor: "bg-amber-400",
     readTime: "3 分钟",
-    excerpt: "每天早上磨豆子的声音是我和这个世界打招呼的方式。手冲的过程让我学会了等待。不是什么有深度的领悟，就是单纯地，喜欢那几分钟。",
+    excerpt:
+      "每天早上磨豆子的声音是我和这个世界打招呼的方式。手冲的过程让我学会了等待。不是什么有深度的领悟，就是单纯地，喜欢那几分钟。",
     content: `我有一个不算复杂的早晨仪式：磨豆子、烧水、手冲、等待。
 
 磨豆子的声音是很粗粝的那种，轰轰的，但我喜欢。声音停了，香气就出来了。我总觉得这是某种很诚实的交换——你用力，它就给你。
@@ -42,63 +48,58 @@ const posts = [
     title: "2025 年阅读小结",
     date: "2025-12-31",
     tag: "阅读",
+    tagColor: "text-blue-600 bg-blue-50",
+    accentColor: "bg-blue-400",
     readTime: "6 分钟",
-    excerpt: "这一年读了 23 本书，有的让我哭，有的让我不停地划线，还有几本压根读不下去。列了个清单，写了点感受，送走这一年。",
+    excerpt:
+      "这一年读了 23 本书，有的让我哭，有的让我不停地划线，还有几本压根读不下去。列了个清单，写了点感受，送走这一年。",
     content: `2025 年的最后一天，我翻出读书笔记 app，数了数，23 本。
 
 比去年少了几本，但感觉更认真了。
 
 印象最深的几本：
 
-《云边有个小卖部》——我知道很多人觉得煽情，但我在地铁上读完最后一章，哭得很没形象。有些眼泪不是被"感动"了，是被"想起了什么"触动了。
+《云边有个小卖部》——我知道很多人觉得煽情，但我在地铁上读完最后一章，哭得很没形象。
 
-《置身事内》——读完觉得自己对这个世界的理解多了几个维度。经济不再是新闻里冷冰冰的数字，是活生生的人在里面来来往往。
+《置身事内》——读完觉得自己对这个世界的理解多了几个维度。
 
-《挪威的森林》——是第三次读了。每次读都会在不同的地方停下来。这次停在了渡边说"死不是生的对立，而是潜伏在生之中"那里，站在路边想了很久。
+《挪威的森林》——是第三次读了。每次读都会在不同的地方停下来。
 
-读不下去的：
+读不下去的：有三本我翻了前两章就放下了，名字就不写了，可能是时机不对。
 
-有三本我翻了前两章就放下了，名字就不写了，可能是时机不对，也可能真的不适合我。
-
-2026 年的打算：
-
-少立 flag，多翻书。`,
+2026 年的打算：少立 flag，多翻书。`,
   },
   {
     slug: "declutter",
     title: "断舍离的第三个月",
     date: "2025-11-05",
     tag: "生活",
+    tagColor: "text-rose-600 bg-rose-50",
+    accentColor: "bg-rose-400",
     readTime: "5 分钟",
-    excerpt: "从卧室开始，扔掉了装满两个大袋子的东西。意外的是，房间小了，人反而轻了。",
+    excerpt:
+      "从卧室开始，扔掉了装满两个大袋子的东西。意外的是，房间小了，人反而轻了。",
     content: `三个月前，我开始认真地清理房间。
 
 起点很随机：有天找一件衣服，翻遍了衣柜，没找到，但翻出来十几件"以后可能会穿"的东西，全部皱巴巴地压在底层。
 
-我当时坐在衣柜前发了很长时间的呆。
+那之后，我开始按照"现在用得到吗"来判断每一件东西。
 
-那之后，我开始按照"现在用得到吗"来判断每一件东西。不是"以后可能用"，不是"当初花了钱可惜"，只是：现在。
-
-两个月后，房间空出来了 1/3。
-
-有趣的是，空出来的不只是物理空间。我开始觉得早上起来不那么烦躁了，找东西更容易了，在房间里待着也更放松了。
-
-物品和人是有关系的。你放什么在身边，就在和什么打交道。`,
+两个月后，房间空出来了 1/3。物品和人是有关系的。你放什么在身边，就在和什么打交道。`,
   },
   {
     slug: "market",
     title: "菜市场里的人间",
     date: "2025-09-12",
     tag: "随笔",
+    tagColor: "text-amber-600 bg-amber-50",
+    accentColor: "bg-amber-400",
     readTime: "3 分钟",
-    excerpt: "周末早上去买菜，在卖豆腐的摊子前站了很久。不是因为豆腐好看，是因为老板娘和买豆腐的大爷吵架的方式，太好笑了。",
-    content: `我喜欢逛菜市场。
+    excerpt:
+      "周末早上去买菜，在卖豆腐的摊子前站了很久。不是因为豆腐好看，是因为老板娘和买豆腐的大爷吵架的方式，太好笑了。",
+    content: `我喜欢逛菜市场。不是因为那里比超市便宜，是因为那里更"活"。
 
-不是因为那里比超市便宜，是因为那里更"活"。
-
-上周六早上，我去买豆腐。卖豆腐的阿姨五十多岁，声音很亮，头发盘起来用一根筷子别着。旁边站了个七十多岁的大爷，在讲昨天一斤豆腐涨了两毛钱。
-
-阿姨说：大爷，两毛钱，你差这两毛钱吗？
+卖豆腐的阿姨对大爷说：两毛钱，你差这两毛钱吗？
 
 大爷说：我不差，我就是要说说。
 
@@ -106,9 +107,7 @@ const posts = [
 
 然后大爷真的絮絮叨叨说了五分钟，阿姨一边切豆腐一边"嗯嗯嗯"，最后多给了大爷一块豆腐，说：送你的，别说我。
 
-大爷乐了，拎着豆腐走了。
-
-我站在旁边看这一幕，觉得城市里其实藏着很多这样的时刻，只是我们走得太快，来不及看见。`,
+城市里其实藏着很多这样的时刻，只是我们走得太快，来不及看见。`,
   },
 ];
 
@@ -117,26 +116,38 @@ const tags = ["全部", "生活", "随笔", "阅读"];
 export default function BlogPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="bg-[#f5f5f7] pt-20 pb-16 px-6">
+      {/* ── Hero ── */}
+      <section className="bg-[#f5f5f7] pt-24 pb-20 px-6">
         <div className="max-w-[980px] mx-auto">
-          <p className="text-[#6e6e73] text-[14px] font-medium tracking-widest uppercase mb-4">博客</p>
-          <h1 className="text-[64px] md:text-[72px] font-bold text-[#1d1d1f] leading-[1.05] tracking-tight mb-6">
-            把零散的想法，<br />写成可以翻看的样子。
-          </h1>
-          <p className="text-[21px] text-[#6e6e73] max-w-[540px]">
-            共 {posts.length} 篇文章
-          </p>
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+            <div>
+              <p className="text-[12px] font-semibold tracking-[0.12em] uppercase text-[#0071e3] mb-4">
+                博客
+              </p>
+              <h1
+                className="font-bold text-[#1d1d1f] leading-[1.05] tracking-[-0.003em]"
+                style={{ fontSize: "clamp(40px, 7vw, 72px)" }}
+              >
+                把零散的想法，
+                <br />
+                写成可以翻看的样子。
+              </h1>
+            </div>
+            <div className="text-right md:pb-2 flex-shrink-0">
+              <div className="text-[32px] font-bold text-[#1d1d1f] tabular-nums">{posts.length}</div>
+              <div className="text-[14px] text-[#6e6e73]">篇文章</div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Tag filters */}
-      <section className="bg-white border-b border-black/10 px-6 py-5 sticky top-12 z-40">
-        <div className="max-w-[980px] mx-auto flex flex-wrap gap-2">
+      {/* ── Tag filters ── */}
+      <div className="bg-white border-b border-[#d2d2d7] sticky top-[44px] z-40 px-6 py-4">
+        <div className="max-w-[980px] mx-auto flex items-center gap-2 overflow-x-auto scrollbar-none" style={{ scrollbarWidth: "none" }}>
           {tags.map((tag) => (
             <span
               key={tag}
-              className={`px-4 py-1.5 rounded-full text-[14px] font-medium cursor-pointer transition-colors ${
+              className={`flex-shrink-0 px-4 py-1.5 rounded-full text-[14px] font-medium cursor-pointer transition-all duration-200 ${
                 tag === "全部"
                   ? "bg-[#1d1d1f] text-white"
                   : "bg-[#f5f5f7] text-[#1d1d1f] hover:bg-[#e8e8ed]"
@@ -146,37 +157,64 @@ export default function BlogPage() {
             </span>
           ))}
         </div>
-      </section>
+      </div>
 
-      {/* Posts */}
-      <section className="bg-white py-16 px-6">
-        <div className="max-w-[980px] mx-auto space-y-5">
-          {posts.map((post) => (
-            <article
-              key={post.slug}
-              id={post.slug}
-              className="bg-[#f5f5f7] rounded-[20px] p-8 hover:shadow-lg transition-all duration-300"
-            >
-              <div className="flex flex-wrap items-center gap-3 mb-4">
-                <span className="text-[12px] font-medium text-[#0071e3] bg-[#0071e3]/10 px-3 py-1 rounded-full">
-                  {post.tag}
-                </span>
-                <span className="text-[13px] text-[#6e6e73]">{post.date}</span>
-                <span className="text-[13px] text-[#6e6e73]">· {post.readTime}阅读</span>
-              </div>
-              <h2 className="text-[24px] font-bold text-[#1d1d1f] mb-3 leading-snug tracking-tight hover:text-[#0071e3] transition-colors cursor-pointer">
-                {post.title}
-              </h2>
-              <p className="text-[17px] text-[#6e6e73] leading-relaxed mb-6">{post.excerpt}</p>
+      {/* ── Article list ── */}
+      <section className="bg-white py-10 px-6">
+        <div className="max-w-[980px] mx-auto">
+          {posts.map((post, i) => (
+            <article key={post.slug} id={post.slug}>
+              <div className="flex gap-6 py-10 group cursor-pointer hover:bg-[#fafafa] -mx-4 px-4 rounded-[12px] transition-colors duration-200">
+                {/* Accent bar */}
+                <div className={`hidden sm:block flex-shrink-0 w-[3px] rounded-full ${post.accentColor} self-stretch`} />
 
-              {/* Article content */}
-              <div className="border-t border-black/10 pt-6 text-[15px] text-[#6e6e73] leading-[1.8] whitespace-pre-line">
-                {post.content}
+                <div className="flex-1 min-w-0">
+                  <div className="flex flex-wrap items-center gap-3 mb-3">
+                    <span className={`text-[12px] font-semibold px-3 py-1 rounded-full ${post.tagColor}`}>
+                      {post.tag}
+                    </span>
+                  </div>
+
+                  <h2
+                    className="font-bold text-[#1d1d1f] leading-snug tracking-tight mb-3 group-hover:text-[#0071e3] transition-colors duration-200"
+                    style={{ fontSize: "clamp(20px, 2.5vw, 28px)" }}
+                  >
+                    {post.title}
+                  </h2>
+
+                  <p className="text-[15px] text-[#6e6e73] leading-relaxed mb-4 line-clamp-2">
+                    {post.excerpt}
+                  </p>
+
+                  {/* Content preview */}
+                  <div className="hidden md:block text-[14px] text-[#6e6e73]/70 leading-[1.7] line-clamp-3 mb-5 pl-4 border-l-2 border-[#d2d2d7] whitespace-pre-line">
+                    {post.content}
+                  </div>
+
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3 text-[13px] text-[#6e6e73]">
+                      <span className="font-medium">{post.date}</span>
+                      <span className="text-[#d2d2d7]">·</span>
+                      <span>{post.readTime}阅读</span>
+                    </div>
+                    <span className="text-[14px] font-medium text-[#0071e3] opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                      继续阅读 →
+                    </span>
+                  </div>
+                </div>
               </div>
+
+              {i < posts.length - 1 && (
+                <div className="h-[1px] bg-[#d2d2d7]" />
+              )}
             </article>
           ))}
         </div>
       </section>
+
+      <style>{`
+        .scrollbar-none::-webkit-scrollbar { display: none; }
+      `}</style>
     </>
   );
 }
