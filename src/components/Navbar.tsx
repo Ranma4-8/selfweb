@@ -16,10 +16,10 @@ export default function Navbar({ authButton }: { authButton?: React.ReactNode })
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-amber-50/90 backdrop-blur-sm border-b border-amber-100">
-      <div className="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
-        <Link href="/" className="text-xl font-bold text-stone-800 tracking-tight hover:text-amber-600 transition-colors">
-          晴间有云 ☁️
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-black/10">
+      <div className="max-w-[980px] mx-auto px-6 h-12 flex items-center justify-between">
+        <Link href="/" className="text-[17px] font-semibold text-[#1d1d1f] tracking-tight hover:text-[#0071e3] transition-colors">
+          晴间有云
         </Link>
 
         {/* Desktop nav */}
@@ -28,13 +28,16 @@ export default function Navbar({ authButton }: { authButton?: React.ReactNode })
             <Link
               key={link.href}
               href={link.href}
-              className={`text-sm font-medium transition-colors ${
+              className={`text-[14px] transition-colors relative group ${
                 pathname === link.href
-                  ? "text-amber-600 border-b-2 border-amber-400 pb-0.5"
-                  : "text-stone-600 hover:text-amber-600"
+                  ? "text-[#0071e3]"
+                  : "text-[#1d1d1f] hover:text-[#0071e3]"
               }`}
             >
               {link.label}
+              <span className={`absolute -bottom-0.5 left-0 h-px bg-[#0071e3] transition-all duration-200 ${
+                pathname === link.href ? "w-full" : "w-0 group-hover:w-full"
+              }`} />
             </Link>
           ))}
           {authButton}
@@ -42,11 +45,11 @@ export default function Navbar({ authButton }: { authButton?: React.ReactNode })
 
         {/* Mobile menu button */}
         <button
-          className="md:hidden text-stone-700 hover:text-amber-600 transition-colors"
+          className="md:hidden text-[#1d1d1f] hover:text-[#0071e3] transition-colors"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
         >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             {menuOpen ? (
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             ) : (
@@ -58,13 +61,13 @@ export default function Navbar({ authButton }: { authButton?: React.ReactNode })
 
       {/* Mobile nav */}
       {menuOpen && (
-        <div className="md:hidden bg-amber-50 border-t border-amber-100 px-6 py-4 flex flex-col gap-4">
+        <div className="md:hidden bg-white/95 backdrop-blur-md border-t border-black/10 px-6 py-4 flex flex-col gap-4">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`text-sm font-medium transition-colors ${
-                pathname === link.href ? "text-amber-600" : "text-stone-600 hover:text-amber-600"
+              className={`text-[14px] transition-colors ${
+                pathname === link.href ? "text-[#0071e3]" : "text-[#1d1d1f] hover:text-[#0071e3]"
               }`}
               onClick={() => setMenuOpen(false)}
             >
